@@ -1,0 +1,8 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+api_login_check:
+    path: /login_check
+app_logout:
+    path: /deconnexion
+    methods: GET

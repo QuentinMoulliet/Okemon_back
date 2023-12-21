@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}Admin | Commentaires{% endblock %}
+
+{% block body %}
+    <div class="mx-5">
+    <h1 class="text-center mt-4 mb-5 text-white">Liste des commentaires</h1>
+    <div class="d-flex justify-content-center mb-3">
+    {% include "back/fragments/_flash_message.html.twig" %}
+    </div>
+    <table class="table table-striped table-dark text-white text-center align-middle border border-white">
+        <thead>
+            <tr>
+                <th class="border border-white">Id</th>
+                <th class="border border-white">Titre de l'article</th>
+                <th class="border border-white">Voir l'article</th>
+                <th class="border border-white">Auteur</th>
+                <th class="border border-white">Voir l'auteur</th>
+                <th class="border border-white">Contenu du commentaire</th>
+                <th class="border border-white">Créé le</th>
+                <th class="border border-white">Modifié le</th>
+                <th class="border border-white">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            <tr>
+                <td class="border border-white">{{ comment.id }}</td>
+                <td class="border border-white">{{ comment.review.title[:30] ~'...' }}</td>
+                <td class="border border-white"><a href="{{ path('app_back_review_show', {'id': comment.review.id}) }}" class="btn btn-secondary fa fa-search-plus" role="button"></a></td>
+                <td class="border border-white">{{ comment.user.nickname }}</td>
+                <td class="border border-white"><a href="{{ path('app_back_user_show', {'id': comment.user.id}) }}" class="btn btn-secondary fa fa-search-plus" role="button"></a></td>
+                <td class="border border-white">{{ comment.content[:100] ~'...'}}</td>
+                <td class="border border-white">{{ comment.createdAt ? comment.createdAt|date('d-m-Y H:i:s') : '' }}</td>
+                <td class="border border-white">{{ comment.updatedAt ? comment.updatedAt|date('d-m-Y H:i:s') : '' }}</td>
+                <td class="border border-white">
+                    {{ include('back/comment/_crud_button.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td class="text-center" colspan="12">Aucun commentaire trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

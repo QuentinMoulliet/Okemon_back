@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <html lang="fr">
+        <title>{% block title %}O'kémon{% endblock %}</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Nova+Square&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('asset/css/okemon.css') }}">
+        <link rel="shortcut icon" href="{{ asset('asset/image/favicon.png') }}" type="image/x-icon">
+        <body style="background-image: url('https://preview.redd.it/pokemon-anniversary-wallpaper-5120x1440-v0-2zl712jin0ga1.png?width=3440&format=png&auto=webp&s=6f4d5b2ecbba15b48b6c3bc3bfc0d778b122f175');"></style>
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <div class="container-fluid d-flex justify-content-between">
+            <a href="{{ path('app_back_main') }}">
+                <img src="{{ asset('asset/image/favicon.png') }}" height="50" alt="Logo O'kémon">
+            </a>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="{{ path('app_back_main') }}">Accueil</a>
+                    </li>
+                    {% if not is_granted("ROLE_ADMIN") %}
+                    <li class="p-2 navbar-nav">
+                        <a href="{{path('app_login')}}" class="nav-link">Connexion</a>
+                    </li>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="{{ path('app_back_review_index') }}">Articles</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="{{ path('app_back_comment_index') }}">Commentaires</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="{{ path('app_back_user_index') }}">Utilisateurs</a>
+                    </li>
+                    {% endif %}
+            </div>
+            <div class="d-flex">
+            {% if is_granted("ROLE_ADMIN") %}
+            <ul class="navbar-nav">
+                <li class="nav-link nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        <span>{{app.user.nickname}}</span>
+                    </a>
+                    <ul class="dropdown-menu m-2 bg-dark">
+                        <li><a class="nav-link text-center" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% endif %}
+            <li class="p-2 navbar-nav">
+                <a class="nav-link" href="https://o-kemon.surge.sh">Retour sur le site</a>
+            </li>
+            </div>
+        </div>
+    </nav>
+    {% block body %}
+    {% endblock %}
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+<form method="post" action="{{ path('app_back_comment_delete', {'id': comment.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer ce commentaire?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+    <div class="container-fluid">
+        <a href="{{ path('app_back_comment_show', {'id': comment.id}) }}" class="btn btn-success fa fa-eye p-2 mb-1" role="button"></a>
+        <a href="{{ path('app_back_comment_edit', {'id': comment.id}) }}" class="btn btn-warning fa fa-pencil p-2 mb-1" role="button"></a>
+        <button class="btn btn-danger fa fa-trash-o p-2 mb-1"></button>
+    </div>
+</form>
