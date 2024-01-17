@@ -37,7 +37,7 @@
                 <td class="border border-white">{{ user.country }}</td>
                 <td class="border border-white">{{ user.description[:35] ~'...' }}</td>
                 <td class="border border-white">{{ user.catchphrase }}</td>
-                <td class="border border-white"><img width=50px src="{{ asset('asset/image/'~ user.image) }}" class="rounded-circle" ></td>
+                <td class="border border-white"><img width="50px" src="{{ asset('asset/image/'~ user.image) }}" class="rounded-circle" ></td>
                 {% if user.status == 1 %}
                 <td class="border border-white">Actif</td>
                 {% endif %}
