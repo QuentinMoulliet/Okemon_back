@@ -36,12 +36,12 @@
                 <td class="border border-white">{{ user.catchphrase }}</td>
                 <td class="border border-white"><img width="100px" src="{{ asset('asset/image/'~ user.image) }}"
                         class="rounded-circle"></td>
-                {% if userCollection[0][1] < 1 %} <td class="border border-white">{{ userCollection[0][1] }}<br>carte
+                {% if userCollection[0][1] <= 1 %} <td class="border border-white">{{ userCollection[0][1] }}<br>carte
                     </td>
                     {% else %}
                     <td class="border border-white">{{ userCollection[0][1] }}<br>cartes</td>
                     {% endif %}
-                    {% if userWishlist[0][1] < 1 %} <td class="border border-white">{{ userWishlist[0][1] }}<br>carte
+                    {% if userWishlist[0][1] <= 1 %} <td class="border border-white">{{ userWishlist[0][1] }}<br>carte
                         </td>
                         {% else %}
                         <td class="border border-white">{{ userWishlist[0][1] }}<br>cartes</td>
